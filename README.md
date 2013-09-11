@@ -1,7 +1,9 @@
 archlinux-install
 =================
 
-Set of shell scripts to carry out the steps of manually installing Archlinux.
+Set of shell scripts to carry out the steps of manually installing Arch Linux.
+Detailed explanation of the installation process can be found on [Arch Linux
+Installation Guide] [url_guide] on sudaraka.org.
 
 Copyright 2013 [Sudaraka Wijesinghe] [url_contact].
 
@@ -40,3 +42,4 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
   [url_contact]: http://sudaraka.org/contact/
+  [url_guide]: http://sudaraka.org/note-to-self/archlinux-installation-guide
