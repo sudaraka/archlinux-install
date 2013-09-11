@@ -5,6 +5,24 @@ Set of shell scripts to carry out the steps of manually installing Archlinux.
 
 Copyright 2013 [Sudaraka Wijesinghe] [url_contact].
 
+
+Script file name key.
+---------------------
+
+> `NNF-description.sh`
+
+**NN** - incremental number in which the scripts are preferably executed in.
+
+**F** - single digit flag that indicate which environment the script should be
+executed in.
+
+* **0** - Installer live environment.
+* **1** - Installer chroot environment.
+* **2** - Installed system.
+
+**description** - descriptive text that explains what the script does.
+
+
 License
 -------
 
