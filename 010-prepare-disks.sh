@@ -198,13 +198,17 @@ mount /dev/${DEV1}1 /mnt >/dev/null;
 echo 'Creating directory structure on root partition...';
 mkdir -p /mnt/{boot,dev,etc/wpa_supplicant,home,proc,root,run,sys,tmp,var/{cache/pacman/pkg,lib/pacman}} 2>/dev/null;
 
-if [ ! -z $DEV2 ]; then
-    mkdir -p /mnt/disk2 >/dev/null;
-fi;
-
 # Mount home
 echo 'Mounting home partition...';
 mount /dev/${HOME_PARTITION} /mnt/home >/dev/null;
+
+if [ ! -z $DEV2 ]; then
+    mkdir -p /mnt/disk2 >/dev/null;
+
+    # Mount disk2
+    echo 'Mounting disk2 partition...';
+    mount /dev/${DEV2}6 /mnt/disk2
+fi;
 
 # Mount virtual file systems for chroot
 echo 'Mounting and binding virtual file systems for chroot...';
