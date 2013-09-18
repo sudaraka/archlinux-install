@@ -48,6 +48,15 @@ if [[ "$DEV1" == "$DEV2" ]]; then
 fi;
 
 
+########### Remove LVM partitions from device mapper ##########################
+
+if [ ! -z "`dmsetup ls|grep -v arch_root-image`" ]; then
+    dmsetup remove_all >/dev/null 2>&1;
+fi;
+
+########### Remove LVM partitions from device mapper ##########################
+
+
 ########### Prepare Device 1 ##################################################
 
 echo "Create partitions on /dev/$DEV1";
