@@ -134,7 +134,7 @@ ln -s ../dhcpcd\@.service \
     /etc/systemd/system/multi-user.target.wants/dhcpcd\@$NET_DEV.service \
     >/dev/null 2>&1;
 
-mkdir -p /etc/systemd/system/dhcpcd\@wlp1s0.service.wants >/dev/null 2>&1;
+mkdir -p /etc/systemd/system/dhcpcd\@$NET_DEV.service.wants >/dev/null 2>&1;
 ln -s /usr/lib/systemd/system/wpa_supplicant\@.service \
     /etc/systemd/system/dhcpcd\@$NET_DEV.service.wants/wpa_supplicant\@$NET_DEV.service \
     >/dev/null 2>&1;

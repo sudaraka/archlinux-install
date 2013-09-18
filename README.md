@@ -14,6 +14,8 @@ Script file name key.
 > `NNF-description.sh`
 
 **NN** - incremental number in which the scripts are preferably executed in.
+Special prefix "ex" is used for the extra support script that may or may not be
+used in the installation process.
 
 **F** - single digit flag that indicate which environment the script should be
 executed in.
