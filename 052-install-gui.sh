@@ -25,6 +25,13 @@ echo 'This is free software, and you are welcome to redistribute it';
 echo 'under certain conditions under GNU GPLv3 or later.';
 echo '';
 
+
+if [ 0 -qe $UID ]; then
+    echo 'Please run as normal user';
+    exit 1;
+fi;
+
+
 # install X, XFCE, fonts and iBus
 yaourt -S --noconfirm --ignore mousepad \
     xorg-server xorg-utils xorg-server-utils xorg-xinit mesa mesa-demos \
@@ -40,8 +47,8 @@ cd $HOME/src >/dev/null 2>&1;
 git clone https://github.com/duskp/numix-holo.git 2>&1;
 git clone https://github.com/shimmerproject/elementary-xfce.git 2>&1;
 
-ln -s $HOME/src/numix-holo /usr/share/themes >/dev/null 2>&1;
-ln -s $HOME/src/elementary-xfce/elementary-xfce /usr/share/icons \
+sudo ln -s $HOME/src/numix-holo /usr/share/themes >/dev/null 2>&1;
+sudo ln -s $HOME/src/elementary-xfce/elementary-xfce /usr/share/icons \
     >/dev/null 2>&1;
-ln -s $HOME/src/elementary-xfce/elementary-xfce-dark /usr/share/icons \
-     >/dev/null 2>&1;
+sudo ln -s $HOME/src/elementary-xfce/elementary-xfce-dark{,er,est} \
+    /usr/share/icons >/dev/null 2>&1;
