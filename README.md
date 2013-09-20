@@ -7,6 +7,9 @@ Installation Guide] [url_guide] on sudaraka.org.
 
 Copyright 2013 [Sudaraka Wijesinghe] [url_contact].
 
+_Includes icon (archicon.png) by [byamato] [url_byamato] under
+[CC-BY-NC-SA] [url_cc_by_nc_sa]_
+
 
 Script file name key.
 ---------------------
@@ -45,3 +48,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
   [url_contact]: http://sudaraka.org/contact/
   [url_guide]: http://sudaraka.org/note-to-self/archlinux-installation-guide
+  [url_byamato]: http://byamato.deviantart.com/
+  [url_cc_by_nc_sa]: https://creativecommons.org/licenses/by-nc-sa/3.0/
