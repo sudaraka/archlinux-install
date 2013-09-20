@@ -48,7 +48,7 @@ EOF
 pacman -Sy --quiet -r /mnt --config /mnt/etc/pacman.conf \
     --ignore jfsutils,reiserfsprogs,xfsprogs,vi,nano,lvm2,netctl,linux,linux-firmware,heirloom-mailx,mdadm,pcmciautils\
     base base-devel syslinux wireless_tools wpa_supplicant gvim sudo yaourt \
-    rsync wget git nfs-utils ntp bc
+    rsync wget git nfs-utils ntp bc haveged
 
 echo '';
 
