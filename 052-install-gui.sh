@@ -26,7 +26,7 @@ echo 'under certain conditions under GNU GPLv3 or later.';
 echo '';
 
 
-if [ 0 -qe $UID ]; then
+if [ 0 -eq $UID ]; then
     echo 'Please run as normal user';
     exit 1;
 fi;
