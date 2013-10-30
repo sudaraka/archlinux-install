@@ -175,10 +175,11 @@ useradd -m -s /bin/bash \
     -U $USER >/dev/null 2>&1;
 passwd $USER;
 
-# enable sudo for user
+# enable sudo and truecrypt mounting for user
 cat >> /etc/sudoers << EOF
 
 $USER ALL=(ALL) ALL
+$USER ALL=(root) NOPASSWD:/usr/bin/truecrypt
 EOF
 
 echo 'Disabling root login...';
