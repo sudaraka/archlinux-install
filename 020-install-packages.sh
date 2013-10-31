@@ -25,7 +25,9 @@ echo 'This is free software, and you are welcome to redistribute it';
 echo 'under certain conditions under GNU GPLv3 or later.';
 echo '';
 
-echo 'IMPORTANT: Make sure shared pacman cache is mounted.';
+echo 'IMPORTANT: Make sure you have the following pacman directories mounted.';
+echo '  /var/cache/pacman/pkg';
+echo '  /var/lib/pacman/sync';
 read -n1 -s -p 'Press any key to continue';
 echo '';
 echo '';

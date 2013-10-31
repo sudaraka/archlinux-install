@@ -46,4 +46,9 @@ if [ ! -z "`mount|grep /var/cache/pacman`" ]; then
     umount -v /var/cache/pacman/pkg >/dev/null 2>&1;
 fi;
 
+if [ ! -z "`mount|grep /var/lib/pacman/sync`" ]; then
+    echo "Unmounting /var/lib/pacman/sync";
+    umount -v /var/lib/pacman/sync >/dev/null 2>&1;
+fi;
+
 echo '';

@@ -77,6 +77,7 @@ fi;
 cat >> /etc/fstab << EOF
 
 $LAN_SERVER:/home/pacman/cache/`uname -m` /var/cache/pacman/pkg nfs noauto,x-systemd.automount,noexec,nolock,noatime,nodiratime,rsize=32768,wsize=32768,timeo=14,intr 0 0
+$LAN_SERVER:/home/pacman/sync /var/lib/pacman/sync nfs noauto,x-systemd.automount,noexec,nolock,noatime,nodiratime,rsize=32768,wsize=32768,timeo=14,intr 0 0
 EOF
 
 # Hostname
@@ -126,7 +127,7 @@ sed 's/#\(SystemMaxUse=\).*/\116M/' -i /etc/systemd/journald.conf \
 
 # Make wireless connection on boot
 sed 's/\(Type=\).\+/\1idle/' /usr/lib/systemd/system/dhcpcd\@.service |\
-    sed 's/\(Before=.\+\)/\1 var-cache-pacman-pkg.mount/' |\
+    sed 's/\(Before=.\+\)/\1 var-cache-pacman-pkg.mount var-lib-pacman-sync.mount/' |\
     sed "/Before=/i After=wpa_supplicant@$NET_DEV.service" \
     > /etc/systemd/system/dhcpcd\@.service;
 
@@ -146,6 +147,11 @@ ln -s wifi.conf /etc/wpa_supplicant/wpa_supplicant-$NET_DEV.conf \
 mkdir -pv /etc/systemd/system/var-cache-pacman-pkg.mount.wants >/dev/null 2>&1;
 ln -s ../dhcpcd\@.service \
     /etc/systemd/system/var-cache-pacman-pkg.mount.wants/dhcpcd\@$NET_DEV.service \
+    >/dev/null 2>&1;
+
+mkdir -pv /etc/systemd/system/var-lib-pacman-sync.mount.wants >/dev/null 2>&1;
+ln -s ../dhcpcd\@.service \
+    /etc/systemd/system/var-lib-pacman-sync.mount.wants/dhcpcd\@$NET_DEV.service \
     >/dev/null 2>&1;
 
 # Create configuration and install syslinux bootloader
