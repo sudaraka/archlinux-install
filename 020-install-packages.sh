@@ -22,7 +22,7 @@ BASE_IGNORE='jfsutils,reiserfsprogs,xfsprogs,vi,nano,lvm2,netctl,heirloom-mailx,
 
 if [ 'kernel' == "$1" ]; then
     BASE_PKG="$BASE_PKG linux linux-firmware";
-else:
+else
     BASE_IGNORE="$BASE_IGNORE,linux,linux-firmware";
 fi;
 
