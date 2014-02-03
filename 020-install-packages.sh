@@ -17,12 +17,10 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-BASE_PKG='base base-devel syslinux wireless_tools wpa_supplicant gvim sudo
-yaourt rsync wget git nfs-utils ntp bc haveged';
-BASE_IGNORE='jfsutils,reiserfsprogs,xfsprogs,vi,nano,lvm2,netctl,
-heirloom-mailx,mdadm,pcmciautils';
+BASE_PKG='base base-devel syslinux wireless_tools wpa_supplicant gvim sudo yaourt rsync wget git nfs-utils ntp bc haveged';
+BASE_IGNORE='jfsutils,reiserfsprogs,xfsprogs,vi,nano,lvm2,netctl,heirloom-mailx,mdadm,pcmciautils';
 
-if [ 'kernel' == $1 ]; then
+if [ 'kernel' == "$1" ]; then
     BASE_PKG="$BASE_PKG linux linux-firmware";
 else:
     BASE_IGNORE="$BASE_IGNORE,linux,linux-firmware";
