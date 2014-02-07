@@ -56,11 +56,11 @@ esac;
 
 # Other software
 yaourt -S --noconfirm \
-    firefox dropbox thunar-dropbox openssh truecrypt pidgin-libnotify \
+    firefox chromium dropbox thunar-dropbox openssh pidgin-libnotify \
     transmission-gtk keepassx thunderbird gimp vlc dnsutils libreoffice \
     gnucash gnome-calculator evince aspell-en hunspell-en ispell filezilla \
     geany-plugins meld ghex tree dosfstools ntfs-3g file-roller unrar zip \
-    unzip p7zip arj chromium php-apache mariadb-clients
+    unzip p7zip arj php-apache mariadb-clients
 
 mkdir -p $HOME/src >/dev/null 2>&1;
 mkdir -p $HOME/scripts >/dev/null 2>&1;
