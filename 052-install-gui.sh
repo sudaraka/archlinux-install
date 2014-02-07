@@ -32,23 +32,31 @@ if [ 0 -eq $UID ]; then
 fi;
 
 
-# install X, XFCE, fonts and iBus
-yaourt -S --noconfirm --ignore mousepad \
+# install X, fonts, guake and iBus
+yaourt -S --noconfirm \
     xorg-server xorg-utils xorg-server-utils xorg-xinit mesa mesa-demos \
     ttf-dejavu ttf-droid ttf-lklug \
-    xfce4 xfce4-goodies xfce4-places-plugin gvfs \
-    gtk-engine-{unico,murrine} \
-    ibus
+    gvfs gtk-engine-{unico,murrine} \
+    ibus\
+    guake
+
+case "$1" in
+    "xfce")
+        # install XFCE
+        yaourt -S --noconfirm --ignore mousepad \
+            xfce4 xfce4-goodies xfce4-places-plugin
+        ;;
+    "i3")
+        # install i3
+        yauort -S --noconfirm \
+            i3 dmenu qmake thunar thunar-archive-plugins ristretto tumbler \
+            orage xfce4-notes-plugin xfce4-screenshooter
+        ;;
+esac;
+
+# Other software
+yaourt -S --noconfirm \
+    firefox dropbox thunar-dropbox openssh
 
 mkdir -p $HOME/src >/dev/null 2>&1;
-cd $HOME/src >/dev/null 2>&1;
-
-# Install themes and icons
-git clone https://github.com/duskp/numix-holo.git 2>&1;
-git clone https://github.com/shimmerproject/elementary-xfce.git 2>&1;
-
-sudo ln -s $HOME/src/numix-holo /usr/share/themes >/dev/null 2>&1;
-sudo ln -s $HOME/src/elementary-xfce/elementary-xfce /usr/share/icons \
-    >/dev/null 2>&1;
-sudo ln -s $HOME/src/elementary-xfce/elementary-xfce-dark{,er,est} \
-    /usr/share/icons >/dev/null 2>&1;
+mkdir -p $HOME/scripts >/dev/null 2>&1;
