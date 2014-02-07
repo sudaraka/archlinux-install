@@ -48,7 +48,7 @@ case "$1" in
         ;;
     "i3")
         # install i3
-        yauort -S --noconfirm \
+        yaourt -S --noconfirm \
             i3 dmenu qmake thunar thunar-archive-plugins ristretto tumbler \
             orage xfce4-notes-plugin xfce4-screenshooter
         ;;
