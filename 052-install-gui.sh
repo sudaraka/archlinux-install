@@ -56,7 +56,7 @@ esac;
 
 # Other software
 yaourt -S --noconfirm \
-    firefox chromium dropbox thunar-dropbox openssh pidgin-libnotify \
+    firefox chromium dropbox thunar-dropbox pidgin-libnotify \
     transmission-gtk keepassx thunderbird gimp vlc dnsutils libreoffice \
     gnucash gnome-calculator evince aspell-en hunspell-en ispell filezilla \
     geany-plugins meld ghex tree dosfstools ntfs-3g file-roller unrar zip \
