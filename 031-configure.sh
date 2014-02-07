@@ -161,11 +161,12 @@ ln -s usr/lib/systemd/system/rpc-gssd.service \
     >/dev/null 2>&1;
 
 # Create configuration and install syslinux bootloader
-if [ ! -f /boot/vmlinuz-linux ]; then
-    # Only install/configure boot loader when using a custom kernel
-    echo 'Creating syslinux configuration...';
+echo 'Creating syslinux configuration...';
 
-    rm -fr /boot/syslinux >/dev/null 2>&1;
+rm -fr /boot/syslinux >/dev/null 2>&1;
+
+if [ ! -f /boot/vmlinuz-linux ]; then
+    # Using a custom kernel
 
     cat > /boot/syslinux.cfg << EOF
 default linux
@@ -178,10 +179,25 @@ label linux
     append root=/dev/sda1 ro quiet
 EOF
 
-    echo 'Installing bootloader...';
-    extlinux -i /boot >/dev/null 2>&1;
-    dd if=/usr/lib/syslinux/mbr.bin of=/dev/sda bs=440 count=1 >/dev/null 2>&1;
+else
+
+    cat > /boot/syslinux.cfg << EOF
+default linux
+prompt 0
+timeout 60
+
+label linux
+    menu label Arch Linux
+    linux vmlinuz-linux
+    append root=/dev/sda1 ro quiet
+    initrd ../initamfs-linux.img
+EOF
+
 fi;
+
+echo 'Installing bootloader...';
+extlinux -i /boot >/dev/null 2>&1;
+dd if=/usr/lib/syslinux/mbr.bin of=/dev/sda bs=440 count=1 >/dev/null 2>&1;
 
 # Create user and disable root login
 echo "Creating user $USER...";
