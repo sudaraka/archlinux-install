@@ -26,6 +26,10 @@ else
     BASE_IGNORE="$BASE_IGNORE,linux,linux-firmware";
 fi;
 
+if [ ! -z "`lsusb|grep 'RTL8191SEvB'`" ]; then
+    BASE_PKG="$BASE_PKG rfkill";
+fi;
+
 echo '';
 echo '020-install-packages Copyright 2013 Sudaraka Wijesinghe';
 echo 'This program comes with ABSOLUTELY NO WARRANTY;';
