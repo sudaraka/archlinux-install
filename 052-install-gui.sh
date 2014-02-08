@@ -49,18 +49,19 @@ case "$1" in
     "i3")
         # install i3
         yaourt -S --noconfirm \
-            i3 dmenu qmake thunar thunar-archive-plugins ristretto tumbler \
-            orage xfce4-notes-plugin xfce4-screenshooter
+            i3 dmenu thunar thunar-archive-plugin ristretto tumbler orage \
+	    xfce4-notes-plugin xfce4-screenshooter
         ;;
 esac;
 
 # Other software
-yaourt -S --noconfirm \
+yaourt -S --noconfirm --ignore libreoffice-sdk libreoffice-sdk-doc \
     firefox chromium dropbox thunar-dropbox pidgin-libnotify \
-    transmission-gtk keepassx thunderbird gimp vlc dnsutils libreoffice \
-    gnucash gnome-calculator evince aspell-en hunspell-en ispell filezilla \
-    geany-plugins meld ghex tree dosfstools ntfs-3g file-roller unrar zip \
-    unzip p7zip arj php-apache mariadb-clients
+    transmission-gtk keepassx thunderbird gimp vlc dnsutils libreoffice-calc \
+    libreoffice-writer libreoffice-en-US gnucash gnome-calculator evince \
+    aspell-en hunspell-en ispell filezilla geany-plugins meld ghex tree \
+    dosfstools ntfs-3g file-roller unrar zip unzip p7zip arj php-apache \
+    mariadb-clients
 
 mkdir -p $HOME/src >/dev/null 2>&1;
 mkdir -p $HOME/scripts >/dev/null 2>&1;
