@@ -63,5 +63,6 @@ yaourt -S --noconfirm --ignore libreoffice-sdk libreoffice-sdk-doc \
     dosfstools ntfs-3g file-roller unrar zip unzip p7zip arj php-apache \
     mariadb-clients
 
-mkdir -p $HOME/src >/dev/null 2>&1;
-mkdir -p $HOME/scripts >/dev/null 2>&1;
+# Make Python 2.x default
+sudo rm /bin/python >/dev/null 2>&1;
+sudo ln -s python2 /bin/python >/dev/null 2>&1;
