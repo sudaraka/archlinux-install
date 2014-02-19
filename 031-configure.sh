@@ -188,7 +188,7 @@ label linux
     menu label Arch Linux
     linux vmlinuz-linux
     append root=/dev/sda1 ro quiet
-    initrd ../initamfs-linux.img
+    initrd initramfs-linux.img
 EOF
 
 fi;
