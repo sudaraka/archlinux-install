@@ -154,7 +154,7 @@ if [ ! -z "$RFKILL" ]; then
         >/dev/null 2>&1;
 
     ln -s /usr/lib/systemd/system/rfkill-unblock\@.service \
-        /etc/systemd/system/rfkill-unblock\@wifi.service >/dev/null 2>&1;
+        /etc/systemd/system/wpa_supplicant\@$NET_DEV.service.wants/rfkill-unblock\@wifi.service >/dev/null 2>&1;
 fi;
 
 
