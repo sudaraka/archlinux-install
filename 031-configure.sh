@@ -27,12 +27,10 @@ echo '';
 
 HOSTNAME=$1;
 shift
-LAN_SERVER=$1;
-shift
-NET_DEV=$1
-shift
 USER=$1
 
+LAN_SERVER=`grep 'nameserver' /etc/resolv.conf|cut -d' ' -f2`;
+NET_DEV=`ip link|grep ': wl'|cut -d':' -f2|tr -d ' '`;
 SWAP_PARTITION=`swapon -s|grep '/dev/'|cut -d' ' -f1`;
 HOME_PARTITION=`mount|grep 'on /home'|cut -d' ' -f1`;
 DSK2_PARTITION=`mount|grep 'on /disk2'|cut -d' ' -f1`;
