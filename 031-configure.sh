@@ -146,16 +146,10 @@ mkdir -pv /etc/systemd/system/var-cache-pacman-pkg.mount.wants >/dev/null 2>&1;
 ln -s ../dhcpcd\@.service \
     /etc/systemd/system/var-cache-pacman-pkg.mount.wants/dhcpcd\@$NET_DEV.service \
     >/dev/null 2>&1;
-ln -s usr/lib/systemd/system/rpc-gssd.service \
-    /etc/systemd/system/var-cache-pacman-pkg.mount.wants \
-    >/dev/null 2>&1;
 
 mkdir -pv /etc/systemd/system/var-lib-pacman-sync.mount.wants >/dev/null 2>&1;
 ln -s ../dhcpcd\@.service \
     /etc/systemd/system/var-lib-pacman-sync.mount.wants/dhcpcd\@$NET_DEV.service \
-    >/dev/null 2>&1;
-ln -s usr/lib/systemd/system/rpc-gssd.service \
-    /etc/systemd/system/var-lib-pacman-sync.mount.wants \
     >/dev/null 2>&1;
 
 # Create configuration and install syslinux bootloader
