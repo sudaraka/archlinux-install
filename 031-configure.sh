@@ -49,12 +49,11 @@ if [ -z "$DSK2_PARTITION" ]; then
 else
     echo $DSK2_PARTITION;
 fi;
-echo '';
 echo -n 'Enable Rfkill     : ';
 if [ -z "$RFKILL" ]; then
-    echo 'Yes';
-else
     echo 'No';
+else
+    echo 'Yes';
 fi;
 echo '';
 
@@ -150,7 +149,7 @@ ln -s /usr/lib/systemd/system/wpa_supplicant\@.service \
 ln -s wifi.conf /etc/wpa_supplicant/wpa_supplicant-$NET_DEV.conf \
     >/dev/null 2>&1;
 
-if [ -z "$RFKILL" ]; then
+if [ ! -z "$RFKILL" ]; then
     mkdir -p /etc/systemd/system/wpa_supplicant\@$NET_DEV.service.wants \
         >/dev/null 2>&1;
 
