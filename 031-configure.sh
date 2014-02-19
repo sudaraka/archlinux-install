@@ -28,6 +28,8 @@ echo '';
 HOSTNAME=$1;
 shift
 USER=$1
+shift
+RFKILL=$1
 
 LAN_SERVER=`grep 'nameserver' /etc/resolv.conf|cut -d' ' -f2`;
 NET_DEV=`ip link|grep ': wl'|cut -d':' -f2|tr -d ' '`;
@@ -42,10 +44,17 @@ echo "Username          : $USER";
 echo "Swap Partition    : $SWAP_PARTITION";
 echo "Home Partition    : $HOME_PARTITION";
 echo -n 'Extra Partition   : ';
-if [ -z $DSK2_PARTITION ]; then
+if [ -z "$DSK2_PARTITION" ]; then
     echo 'n/a';
 else
     echo $DSK2_PARTITION;
+fi;
+echo '';
+echo -n 'Enable Rfkill     : ';
+if [ -z "$RFKILL" ]; then
+    echo 'Yes';
+else
+    echo 'No';
 fi;
 echo '';
 
@@ -140,6 +149,15 @@ ln -s /usr/lib/systemd/system/wpa_supplicant\@.service \
 
 ln -s wifi.conf /etc/wpa_supplicant/wpa_supplicant-$NET_DEV.conf \
     >/dev/null 2>&1;
+
+if [ -z "$RFKILL" ]; then
+    mkdir -p /etc/systemd/system/wpa_supplicant\@$NET_DEV.service.wants \
+        >/dev/null 2>&1;
+
+    ln -s /usr/lib/systemd/system/rfkill-unblock\@.service \
+        /etc/systemd/system/rfkill-unblock\@wifi.service >/dev/null 2>&1;
+fi;
+
 
 # Unmount pacman cache before shutdown/reboot
 mkdir -pv /etc/systemd/system/var-cache-pacman-pkg.mount.wants >/dev/null 2>&1;
