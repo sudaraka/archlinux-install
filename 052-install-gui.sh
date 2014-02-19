@@ -55,7 +55,7 @@ case "$1" in
 esac;
 
 # Other software
-yaourt -S --noconfirm --ignore libreoffice-sdk libreoffice-sdk-doc \
+yaourt -S --noconfirm --ignore libreoffice-sdk,libreoffice-sdk-doc \
     firefox chromium dropbox thunar-dropbox pidgin-libnotify \
     transmission-gtk keepassx thunderbird gimp vlc dnsutils libreoffice-calc \
     libreoffice-writer libreoffice-en-US gnucash gnome-calculator evince \
