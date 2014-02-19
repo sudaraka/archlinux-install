@@ -195,7 +195,7 @@ fi;
 
 echo 'Installing bootloader...';
 extlinux -i /boot >/dev/null 2>&1;
-dd if=/usr/lib/syslinux/mbr.bin of=/dev/sda bs=440 count=1 >/dev/null 2>&1;
+dd if=/usr/lib/syslinux/bios/mbr.bin of=/dev/sda bs=440 count=1 >/dev/null 2>&1;
 
 # Create user and disable root login
 echo "Creating user $USER...";
