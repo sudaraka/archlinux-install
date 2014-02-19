@@ -69,9 +69,9 @@ mv /mnt/etc/pacman.conf{,.pacnew} >/dev/null 2>&1
 mv /mnt/etc/pacman.conf{.pacorig,} >/dev/null 2>&1
 
 # WPA configuration
-if [ -f wifi.conf ]; then
+if [ -f /root/wifi.conf ]; then
     echo 'Copying WPA configuration file...';
-    cp {,/mnt/etc/wpa_supplicant}wifi.conf >/dev/null 2>&1;
+    cp /{root,mnt/etc/wpa_supplicant}/wifi.conf >/dev/null 2>&1;
 fi;
 
 # copy resolv.conf to new system
