@@ -219,7 +219,7 @@ passwd $USER;
 cat >> /etc/sudoers << EOF
 
 $USER ALL=(ALL) ALL
-$USER ALL=(root) NOPASSWD:/usr/bin/truecrypt
+$USER ALL=(root) NOPASSWD:/home/suda/bin/truecrypt
 EOF
 
 echo 'Disabling root login...';
