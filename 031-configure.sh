@@ -33,7 +33,7 @@ RFKILL=$1
 
 LAN_SERVER=`grep 'nameserver' /etc/resolv.conf|cut -d' ' -f2`;
 NET_DEV=`ip link|grep ': wl'|cut -d':' -f2|tr -d ' '`;
-SWAP_PARTITION=`swapon -s|grep '/dev/'|cut -d' ' -f1`;
+SWAP_PARTITION=`swapon -s|sed -n 2p|cut -d' ' -f1`;
 HOME_PARTITION=`mount|grep 'on /home'|cut -d' ' -f1`;
 DSK2_PARTITION=`mount|grep 'on /disk2'|cut -d' ' -f1`;
 
@@ -41,7 +41,7 @@ echo "Hostname          : $HOSTNAME";
 echo "Server IP         : $LAN_SERVER";
 echo "Network interface : $NET_DEV";
 echo "Username          : $USER";
-echo "Swap Partition    : $SWAP_PARTITION";
+echo "Swap File         : $SWAP_PARTITION";
 echo "Home Partition    : $HOME_PARTITION";
 echo -n 'Extra Partition   : ';
 if [ -z "$DSK2_PARTITION" ]; then
@@ -68,7 +68,7 @@ cat >> /etc/fstab << EOF
 
 /dev/sda1 / ext4 defaults,noatime,nodiratime,discard,errors=remount-ro 0 1
 $HOME_PARTITION /home ext4 defaults,noatime,nodiratime,discard,errors=remount-ro 0 1
-$SWAP_PARTITION swap swap sw,noatime,nodiratime 0 0
+$SWAP_PARTITION none swap defaults,noatime,nodiratime 0 0
 EOF
 
 # Mount disk2
@@ -83,7 +83,7 @@ fi;
 cat >> /etc/fstab << EOF
 
 $LAN_SERVER:/home/pacman/cache/`uname -m` /var/cache/pacman/pkg nfs noauto,x-systemd.automount,noexec,nolock,noatime,nodiratime,rsize=32768,wsize=32768,timeo=14,intr 0 0
-$LAN_SERVER:/home/pacman/sync /var/lib/pacman/sync nfs noauto,x-systemd.automount,noexec,nolock,noatime,nodiratime,rsize=32768,wsize=32768,timeo=14,intr 0 0
+$LAN_SERVER:/home/pacman/sync/`uname -m` /var/lib/pacman/sync nfs noauto,x-systemd.automount,noexec,nolock,noatime,nodiratime,rsize=32768,wsize=32768,timeo=14,intr 0 0
 EOF
 
 # Hostname
@@ -232,6 +232,12 @@ sed 's/\(root:\)[^:]\+\(:.\+\)/\1x\2/' -i /etc/shadow >/dev/null 2>&1;
 echo 'Disabling web cam...';
 cat >> /etc/modprobe.d/modprobe.conf << EOF
 blacklist uvcvideo
+EOF
+
+# Disable trackpad
+echo 'Disabling trackpad...';
+cat >> /etc/modprobe.d/modprobe.conf << EOF
+blacklist psmouse
 EOF
 
 echo '';

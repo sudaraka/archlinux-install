@@ -81,28 +81,12 @@ e
 w
 EOF
 
-# Create partition for swap on single disk setup
-if [ -z $DEV2 ]; then
-    echo 'Creating swap partition...';
-    fdisk /dev/$DEV1 >/dev/null 2>&1 <<EOF
-n
-l
-5
-
-+2G
-t
-5
-82
-w
-EOF
-fi;
-
 # Create partition for /home
 echo 'Creating logical partition for /home in remaining space...';
 fdisk /dev/$DEV1 >/dev/null 2>&1 <<EOF
 n
 l
-6
+5
 
 
 w
@@ -136,14 +120,6 @@ n
 l
 5
 
-+2G
-t
-5
-82
-n
-l
-6
-
 
 w
 EOF
@@ -166,25 +142,13 @@ mkfs.ext4 /dev/${DEV1}1 >/dev/null 2>&1;
 
 # Format home partition as ext4
 HOME_PARTITION=${DEV1}5
-if [ -z $DEV2 ]; then
-    HOME_PARTITION=${DEV1}6
-fi
 
 echo "Formatting home : /dev/${HOME_PARTITION}...";
 mkfs.ext4 /dev/${HOME_PARTITION} >/dev/null 2>&1;
 
-# Format swap partition
-SWAP_PARTITION=${DEV2}5
-if [ -z $DEV2 ]; then
-    SWAP_PARTITION=${DEV1}5
-fi
-
-echo "Formatting swap : /dev/${SWAP_PARTITION}...";
-mkswap /dev/${SWAP_PARTITION} >/dev/null 2>&1;
-
 # Format extra partition as ext4
 if [ ! -z $DEV2 ]; then
-    echo "Formatting disk2: /dev/${DEV2}6...";
+    echo "Formatting disk2: /dev/${DEV2}5...";
     mkfs.ext4 /dev/${DEV2}6 >/dev/null 2>&1;
 fi;
 
@@ -226,6 +190,17 @@ mount -t proc proc /mnt/proc >/dev/null;
 mount -t sysfs sys /mnt/sys >/dev/null;
 mount --bind /tmp /mnt/tmp >/dev/null;
 
+########### Mount partitions and virtual file systems #########################
+
+
+########### Create swap file ##################################################
+
+SWAP_PARTITION=/mnt/boot/swap
+
+echo "Creating swap file : ${SWAP_PARTITION}...";
+dd if=/dev/zero of=$SWAP_PARTITION bs=1M count=2048 >/dev/null 2>&1;
+mkswap ${SWAP_PARTITION} >/dev/null 2>&1;
+
 echo '';
 
-########### Mount partitions and virtual file systems #########################
+########### Create swap file ##################################################
