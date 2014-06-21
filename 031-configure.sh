@@ -223,7 +223,7 @@ $USER ALL=(root) NOPASSWD:/home/suda/bin/truecrypt
 EOF
 
 echo 'Disabling root login...';
-rm /etc/securetty >/dev/null 2>&1;
+cp /dev/null /etc/securetty >/dev/null 2>&1;
 sed 's#\(root:x:0:0:root:/root:/bin/\).\+#\1false#' -i /etc/passwd \
     >/dev/null 2>&1;
 sed 's/\(root:\)[^:]\+\(:.\+\)/\1x\2/' -i /etc/shadow >/dev/null 2>&1;
@@ -234,8 +234,8 @@ cat >> /etc/modprobe.d/modprobe.conf << EOF
 blacklist uvcvideo
 EOF
 
-# Disable trackpad
-echo 'Disabling trackpad...';
+# Disable track pad
+echo 'Disabling track pad...';
 cat >> /etc/modprobe.d/modprobe.conf << EOF
 blacklist psmouse
 EOF
