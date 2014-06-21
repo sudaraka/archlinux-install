@@ -195,6 +195,7 @@ SWAP_PARTITION=/mnt/boot/swap
 
 echo "Creating swap file : ${SWAP_PARTITION}...";
 dd if=/dev/zero of=$SWAP_PARTITION bs=1M count=2048 >/dev/null 2>&1;
+chmod 600 $SWAP_PARTITION >/dev/null 2>&1
 mkswap ${SWAP_PARTITION} >/dev/null 2>&1;
 
 # Switch swap to new file
