@@ -159,10 +159,6 @@ echo '';
 
 ########### Mount partitions and virtual file systems #########################
 
-# Switch swap ot new partiton
-echo 'Switching swap partition...';
-swapon /dev/${SWAP_PARTITION} >/dev/null;
-
 # Mount root
 echo 'Mounting root partition...';
 mount /dev/${DEV1}1 /mnt >/dev/null;
@@ -200,6 +196,10 @@ SWAP_PARTITION=/mnt/boot/swap
 echo "Creating swap file : ${SWAP_PARTITION}...";
 dd if=/dev/zero of=$SWAP_PARTITION bs=1M count=2048 >/dev/null 2>&1;
 mkswap ${SWAP_PARTITION} >/dev/null 2>&1;
+
+# Switch swap to new file
+echo 'Switching to swap file...';
+swapon ${SWAP_PARTITION} >/dev/null;
 
 echo '';
 
