@@ -32,10 +32,17 @@ shift
 RFKILL=$1
 
 LAN_SERVER=`grep 'nameserver' /etc/resolv.conf|cut -d' ' -f2`;
-NET_DEV=`ip link|grep ': wl'|cut -d':' -f2|tr -d ' '`;
+EN_DEV=`ip link|grep ': en'|cut -d':' -f2|tr -d ' '`;
+WL_DEV=`ip link|grep ': wl'|cut -d':' -f2|tr -d ' '`;
 SWAP_PARTITION=`swapon -s|sed -n 2p|cut -d' ' -f1`;
 HOME_PARTITION=`mount|grep 'on /home'|cut -d' ' -f1`;
 DSK2_PARTITION=`mount|grep 'on /disk2'|cut -d' ' -f1`;
+
+if [ -z "$WL_DEV" ]; then
+    NET_DEV=$WL_DEV;
+else
+    NET_DEV=$EN_DEV;
+fi;
 
 echo "Hostname          : $HOSTNAME";
 echo "Server IP         : $LAN_SERVER";
@@ -131,30 +138,36 @@ sed 's/#\(NAutoVTs=\).\+/\12/' -i /etc/systemd/logind.conf >/dev/null 2>&1;
 sed 's/#\(SystemMaxUse=\).*/\116M/' -i /etc/systemd/journald.conf \
     >/dev/null 2>&1;
 
-# Make wireless connection on boot
+# Make network connection on boot
 sed 's/\(Type=\).\+/\1idle/' /usr/lib/systemd/system/dhcpcd\@.service |\
     sed 's/\(Before=.\+\)/\1 var-cache-pacman-pkg.mount var-lib-pacman-sync.mount/' |\
-    sed "/Before=/i After=wpa_supplicant@$NET_DEV.service" \
     > /etc/systemd/system/dhcpcd\@.service;
 
 ln -s ../dhcpcd\@.service \
     /etc/systemd/system/multi-user.target.wants/dhcpcd\@$NET_DEV.service \
     >/dev/null 2>&1;
 
-mkdir -p /etc/systemd/system/dhcpcd\@$NET_DEV.service.wants >/dev/null 2>&1;
-ln -s /usr/lib/systemd/system/wpa_supplicant\@.service \
-    /etc/systemd/system/dhcpcd\@$NET_DEV.service.wants/wpa_supplicant\@$NET_DEV.service \
-    >/dev/null 2>&1;
-
-ln -s wifi.conf /etc/wpa_supplicant/wpa_supplicant-$NET_DEV.conf \
-    >/dev/null 2>&1;
-
-if [ ! -z "$RFKILL" ]; then
-    mkdir -p /etc/systemd/system/wpa_supplicant\@$NET_DEV.service.wants \
+# Wireless network specific settings
+if [ "$WL_DEV" == "$NET_DEV" ]; then
+    sed "/Before=/i After=wpa_supplicant@$NET_DEV.service" \
+        -i /etc/systemd/system/dhcpcd\@.service
         >/dev/null 2>&1;
 
-    ln -s /usr/lib/systemd/system/rfkill-unblock\@.service \
-        /etc/systemd/system/wpa_supplicant\@$NET_DEV.service.wants/rfkill-unblock\@wifi.service >/dev/null 2>&1;
+    mkdir -p /etc/systemd/system/dhcpcd\@$NET_DEV.service.wants >/dev/null 2>&1;
+    ln -s /usr/lib/systemd/system/wpa_supplicant\@.service \
+        /etc/systemd/system/dhcpcd\@$NET_DEV.service.wants/wpa_supplicant\@$NET_DEV.service \
+        >/dev/null 2>&1;
+
+    ln -s wifi.conf /etc/wpa_supplicant/wpa_supplicant-$NET_DEV.conf \
+        >/dev/null 2>&1;
+
+    if [ ! -z "$RFKILL" ]; then
+        mkdir -p /etc/systemd/system/wpa_supplicant\@$NET_DEV.service.wants \
+            >/dev/null 2>&1;
+
+        ln -s /usr/lib/systemd/system/rfkill-unblock\@.service \
+            /etc/systemd/system/wpa_supplicant\@$NET_DEV.service.wants/rfkill-unblock\@wifi.service >/dev/null 2>&1;
+    fi;
 fi;
 
 
