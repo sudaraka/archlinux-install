@@ -182,6 +182,10 @@ ln -s ../dhcpcd\@.service \
     /etc/systemd/system/var-lib-pacman-sync.mount.wants/dhcpcd\@$NET_DEV.service \
     >/dev/null 2>&1;
 
+# Make default systemd target multi-user to avoid missing login manager warning
+ln -s /usr/lib/systemd/system/multi-user.target \
+    /etc/systemd/system/default.target >/dev/null 2>&1;
+
 # Create configuration and install syslinux bootloader
 echo 'Creating syslinux configuration...';
 
