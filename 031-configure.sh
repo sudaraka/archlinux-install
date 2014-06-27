@@ -39,9 +39,9 @@ HOME_PARTITION=`mount|grep 'on /home'|cut -d' ' -f1`;
 DSK2_PARTITION=`mount|grep 'on /disk2'|cut -d' ' -f1`;
 
 if [ -z "$WL_DEV" ]; then
-    NET_DEV=$WL_DEV;
-else
     NET_DEV=$EN_DEV;
+else
+    NET_DEV=$WL_DEV;
 fi;
 
 echo "Hostname          : $HOSTNAME";
