@@ -257,4 +257,14 @@ cat >> /etc/modprobe.d/modprobe.conf << EOF
 blacklist psmouse
 EOF
 
+# Initialize pacman
+echo 'Updating pacman mirror list...';
+wget 'https://www.archlinux.org/mirrorlist/?country=US&country=DE&country=NL&country=FR&protocol=http&protocol=https&ip_version=4&ip_version=6&use_mirror_status=on' -qO -| \
+    sed 's/^#\(.\+\)/\1/g' >/etc/pacman.d/mirrorlist
+
+echo 'Initializing pacman keys...';
+systemctl start haveged >/dev/null 2>&1;
+pacman-key --init >/dev/null 2>&1;
+pacman-key --populate archlinux >/dev/null 2>&1;
+
 echo '';
