@@ -149,7 +149,7 @@ mkfs.ext4 /dev/${HOME_PARTITION} >/dev/null 2>&1;
 # Format extra partition as ext4
 if [ ! -z $DEV2 ]; then
     echo "Formatting disk2: /dev/${DEV2}5...";
-    mkfs.ext4 /dev/${DEV2}6 >/dev/null 2>&1;
+    mkfs.ext4 /dev/${DEV2}5 >/dev/null 2>&1;
 fi;
 
 echo '';
@@ -176,7 +176,7 @@ if [ ! -z $DEV2 ]; then
 
     # Mount disk2
     echo 'Mounting disk2 partition...';
-    mount /dev/${DEV2}6 /mnt/disk2
+    mount /dev/${DEV2}5 /mnt/disk2
 fi;
 
 # Mount virtual file systems for chroot
