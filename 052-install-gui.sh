@@ -52,6 +52,12 @@ case "$1" in
             i3 i3bar-icons-git dmenu thunar thunar-archive-plugin ristretto \
                 tumbler orage xfce4-notes-plugin xfce4-screenshooter conky
         ;;
+    "i3-src")
+        # install i3
+        yaourt -S --noconfirm \
+            dmenu thunar thunar-archive-plugin ristretto tumbler orage \
+            xfce4-notes-plugin xfce4-screenshooter conky
+        ;;
 esac;
 
 # Other software
