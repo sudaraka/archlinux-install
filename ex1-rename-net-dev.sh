@@ -62,8 +62,6 @@ echo '';
 
 
 # Start replacing device name
-sed "s/$ND_OLD/$ND_NEW/g" -i /etc/systemd/system/dhcpcd\@.service;
-
 mv /etc/systemd/system/multi-user.target.wants/dhcpcd\@{$ND_OLD,$ND_NEW}.service;
 
 mv /etc/systemd/system/dhcpcd\@{$ND_OLD,$ND_NEW}.service.wants
