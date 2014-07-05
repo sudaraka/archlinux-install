@@ -149,7 +149,7 @@ ln -s ../dhcpcd\@.service \
 
 # Wireless network specific settings
 if [ "$WL_DEV" == "$NET_DEV" ]; then
-    sed "/Before=/i After=wpa_supplicant@$NET_DEV.service" \
+    sed 's/\(After=.\+\)/\1 wpa_supplicant@%I.service' \
         -i /etc/systemd/system/dhcpcd\@.service
         >/dev/null 2>&1;
 
