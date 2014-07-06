@@ -32,11 +32,14 @@ shift
 RFKILL=$1
 
 LAN_SERVER=`grep 'nameserver' /etc/resolv.conf|cut -d' ' -f2`;
-EN_DEV=`ip link|grep ': en\|eth'|cut -d':' -f2|tr -d ' '|head -n1`;
 WL_DEV=`ip link|grep ': wl'|cut -d':' -f2|tr -d ' '|head -n1`;
 SWAP_PARTITION=`swapon -s|sed -n 2p|cut -d' ' -f1`;
 HOME_PARTITION=`mount|grep 'on /home'|cut -d' ' -f1`;
 DSK2_PARTITION=`mount|grep 'on /disk2'|cut -d' ' -f1`;
+
+if [ -z "$EN_DEV" ]; then
+    EN_DEV=`ip link|grep ': en\|eth'|cut -d':' -f2|tr -d ' '|head -n1`;
+fi;
 
 if [ -z "$WL_DEV" ]; then
     NET_DEV=$EN_DEV;
