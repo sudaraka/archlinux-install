@@ -140,7 +140,7 @@ sed 's/#\(SystemMaxUse=\).*/\116M/' -i /etc/systemd/journald.conf \
 
 # Make network connection on boot
 sed 's/\(Type=\).\+/\1idle/' /usr/lib/systemd/system/dhcpcd\@.service |\
-    sed 's/\(Before=.\+\)/\1 var-cache-pacman-pkg.mount var-lib-pacman-sync.mount/' |\
+    sed 's/\(Before=.\+\)/\1 var-cache-pacman-pkg.mount var-lib-pacman-sync.mount/' \
     > /etc/systemd/system/dhcpcd\@.service;
 
 ln -s ../dhcpcd\@.service \
