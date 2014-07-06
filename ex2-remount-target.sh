@@ -19,7 +19,7 @@
 
 
 echo '';
-echo 'ex2-remount-target Copyright 2013 Sudaraka Wijesinghe';
+echo 'ex2-remount-target Copyright 2014 Sudaraka Wijesinghe';
 echo 'This program comes with ABSOLUTELY NO WARRANTY;';
 echo 'This is free software, and you are welcome to redistribute it';
 echo 'under certain conditions under GNU GPLv3 or later.';

@@ -1,7 +1,7 @@
 #!/bin/sh
 # 031-configure.sh: Configure the new system in chroot before booting into it.
 #
-#   Copyright 2013 Sudaraka Wijesinghe <sudaraka.org/contact>
+#   Copyright 2013, 2014 Sudaraka Wijesinghe <sudaraka.org/contact>
 #
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 
 
 echo '';
-echo '031-configure Copyright 2013 Sudaraka Wijesinghe';
+echo '031-configure Copyright 2013, 2014 Sudaraka Wijesinghe';
 echo 'This program comes with ABSOLUTELY NO WARRANTY;';
 echo 'This is free software, and you are welcome to redistribute it';
 echo 'under certain conditions under GNU GPLv3 or later.';

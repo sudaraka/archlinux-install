@@ -1,7 +1,7 @@
 #!/bin/sh
 # ex1-rename-net-dev.sh: Change the network interface name in systemd scripts
 #
-#   Copyright 2013 Sudaraka Wijesinghe <sudaraka.org/contact>
+#   Copyright 2013, 2014 Sudaraka Wijesinghe <sudaraka.org/contact>
 #
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 
 
 echo '';
-echo 'ex1-rename-net-dev Copyright 2013 Sudaraka Wijesinghe';
+echo 'ex1-rename-net-dev Copyright 2013, 2014 Sudaraka Wijesinghe';
 echo 'This program comes with ABSOLUTELY NO WARRANTY;';
 echo 'This is free software, and you are welcome to redistribute it';
 echo 'under certain conditions under GNU GPLv3 or later.';

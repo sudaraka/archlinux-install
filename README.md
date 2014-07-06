@@ -5,7 +5,7 @@ Set of shell scripts to carry out the steps of manually installing Arch Linux.
 Detailed explanation of the installation process can be found on [Arch Linux
 Installation Guide] [url_guide] on sudaraka.org.
 
-Copyright 2013 [Sudaraka Wijesinghe] [url_contact].
+Copyright 2013, 2014 [Sudaraka Wijesinghe] [url_contact].
 
 _Includes icon (archicon.png) by [byamato] [url_byamato] under
 [CC-BY-NC-SA] [url_cc_by_nc_sa]_
