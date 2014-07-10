@@ -35,7 +35,7 @@ fi;
 # install X, fonts, guake and iBus
 yaourt -S --noconfirm \
     xorg-server xorg-utils xorg-server-utils xorg-xinit mesa mesa-demos \
-    ttf-dejavu ttf-droid ttf-lklug \
+    ttf-dejavu ttf-droid ttf-lklug monaco-powerline-font-git \
     gvfs gtk-engine-{unico,murrine} \
     ibus\
     guake
