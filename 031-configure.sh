@@ -240,6 +240,7 @@ cat >> /etc/sudoers << EOF
 
 $USER ALL=(ALL) ALL
 $USER ALL=(root) NOPASSWD:/home/suda/bin/truecrypt
+$USER ALL=(root) NOPASSWD:/usr/bin/systemctl restart httpd
 EOF
 
 echo 'Disabling root login...';
