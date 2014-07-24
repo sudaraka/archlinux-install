@@ -58,10 +58,11 @@ esac;
 yaourt -S --noconfirm --ignore libreoffice-sdk,libreoffice-sdk-doc \
     firefox chromium dropbox thunar-dropbox pidgin-libnotify \
     transmission-gtk keepassx thunderbird gimp vlc dnsutils libreoffice-calc \
-    libreoffice-writer libreoffice-en-US gnucash gnome-calculator evince \
-    aspell-en hunspell-en ispell filezilla geany-plugins meld ghex tree \
-    dosfstools ntfs-3g file-roller unrar zip unzip p7zip arj php-apache \
-    mariadb-clients tk pkgfile screen cmake the_silver_searcher nodejs
+    libreoffice-writer libreoffice-en-US libreoffice-gnome gnucash \
+    gnome-calculator evince aspell-en hunspell-en ispell filezilla \
+    geany-plugins meld ghex tree dosfstools ntfs-3g file-roller unrar zip \
+    unzip p7zip arj php-apache mariadb-clients tk pkgfile screen cmake \
+    the_silver_searcher nodejs
 
 # Make Python 2.x default
 sudo rm /bin/python >/dev/null 2>&1;
