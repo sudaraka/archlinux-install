@@ -60,7 +60,7 @@ yaourt -S --noconfirm \
     gnucash gnome-calculator evince aspell-en hunspell-en ispell filezilla \
     geany-plugins meld ghex tree dosfstools ntfs-3g file-roller unrar zip \
     unzip p7zip arj php-apache mariadb-clients tk pkgfile screen cmake \
-    the_silver_searcher nodejs
+    the_silver_searcher
 
 # Make Python 2.x default
 sudo rm /bin/python >/dev/null 2>&1;
