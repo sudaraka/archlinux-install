@@ -92,8 +92,8 @@ fi;
 # Mount pacman cache on NFS
 cat >> /etc/fstab << EOF
 
-$LAN_SERVER:/home/pacman/cache/`uname -m` /var/cache/pacman/pkg nfs noauto,x-systemd.automount,noexec,nolock,noatime,nodiratime,rsize=32768,wsize=32768,timeo=14,intr 0 0
-$LAN_SERVER:/home/pacman/sync/`uname -m` /var/lib/pacman/sync nfs noauto,x-systemd.automount,noexec,nolock,noatime,nodiratime,rsize=32768,wsize=32768,timeo=14,intr 0 0
+$LAN_SERVER:/home/pacman/cache/`uname -m` /var/cache/pacman/pkg nfs noauto,x-systemd.automount,noexec,nolock,noatime,nodiratime,rsize=32768,wsize=32768,timeo=14,intr,nfsvers=3 0 0
+$LAN_SERVER:/home/pacman/sync/`uname -m` /var/lib/pacman/sync nfs noauto,x-systemd.automount,noexec,nolock,noatime,nodiratime,rsize=32768,wsize=32768,timeo=14,intr,nfsvers=3 0 0
 EOF
 
 # Hostname
