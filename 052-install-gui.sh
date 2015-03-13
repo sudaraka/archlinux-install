@@ -61,7 +61,3 @@ yaourt -S --noconfirm \
     geany-plugins meld ghex tree dosfstools ntfs-3g file-roller unrar zip \
     unzip p7zip arj php-apache mariadb-clients tk pkgfile screen cmake \
     the_silver_searcher
-
-# Make Python 2.x default
-sudo rm /bin/python >/dev/null 2>&1;
-sudo ln -s python2 /bin/python >/dev/null 2>&1;
