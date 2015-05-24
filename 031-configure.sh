@@ -116,12 +116,16 @@ echo "server $LAN_SERVER" >> /etc/ntp.conf;
 echo 'Generating locale...';
 cat >> /etc/locale.gen << EOF
 
-en_US.UTF-8 UTF-8
-en_US ISO-8859-1
-si_LK.UTF-8 UTF-8
+en_US UTF-8
+si_LK UTF-8
 EOF
 
 locale-gen >/dev/null 2>&1;
+
+cat >> /etc/locale.conf << EOF
+
+LANG=en_US
+EOF
 
 # Systemd adjustments
 echo 'Configuring systemd...';
