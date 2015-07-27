@@ -59,4 +59,4 @@ yaourt -S --noconfirm \
     claws-mail gimp vlc bind-tools libreoffice-fresh gnucash gnome-calculator \
     evince aspell-en hunspell-en ispell filezilla meld ghex tree dosfstools \
     ntfs-3g file-roller unrar zip unzip p7zip arj php-apache mariadb-clients \
-    pkgfile screen cmake the_silver_searcher httpie hub
+    pkgfile screen cmake the_silver_searcher httpie hub tk
