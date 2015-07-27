@@ -55,9 +55,8 @@ esac;
 
 # Other software
 yaourt -S --noconfirm \
-    chromium dropbox thunar-dropbox pidgin-libnotify \
-    transmission-gtk keepassx claws-mail gimp vlc bind-tools libreoffice-fresh \
-    gnucash gnome-calculator evince aspell-en hunspell-en ispell filezilla \
-    geany-plugins meld ghex tree dosfstools ntfs-3g file-roller unrar zip \
-    unzip p7zip arj php-apache mariadb-clients tk pkgfile screen cmake \
-    the_silver_searcher httpie hub
+    chromium dropbox thunar-dropbox pidgin-libnotify transmission-gtk keepassx \
+    claws-mail gimp vlc bind-tools libreoffice-fresh gnucash gnome-calculator \
+    evince aspell-en hunspell-en ispell filezilla meld ghex tree dosfstools \
+    ntfs-3g file-roller unrar zip unzip p7zip arj php-apache mariadb-clients \
+    pkgfile screen cmake the_silver_searcher httpie hub
