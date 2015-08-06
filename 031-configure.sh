@@ -248,11 +248,9 @@ $USER ALL=(root) NOPASSWD:/usr/bin/systemctl restart httpd
 $USER ALL=(root) NOPASSWD:/usr/bin/umount -a -t nfs
 EOF
 
-echo 'Disabling root login...';
+echo 'Setting password for root and disabling root login...';
 cp /dev/null /etc/securetty >/dev/null 2>&1;
-sed 's#\(root:x:0:0:root:/root:/bin/\).\+#\1false#' -i /etc/passwd \
-    >/dev/null 2>&1;
-sed 's/\(root:\)[^:]\+\(:.\+\)/\1x\2/' -i /etc/shadow >/dev/null 2>&1;
+passwd root
 
 # Disable web cam driver from starting automatically
 echo 'Disabling web cam...';
