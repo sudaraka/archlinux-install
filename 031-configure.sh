@@ -146,24 +146,24 @@ sed 's/#\(SystemMaxUse=\).*/\116M/' -i /etc/systemd/journald.conf \
     >/dev/null 2>&1;
 
 # Make network connection on boot
-sed 's/\(Type=\).\+/\1idle/' /usr/lib/systemd/system/dhcpcd\@.service |\
-    sed 's/\(Before=.\+\)/\1 var-cache-pacman-pkg.mount var-lib-pacman-sync.mount/' \
-    > /etc/systemd/system/dhcpcd\@.service;
+systemctl enable systemd-networkd
+systemctl enable systemd-resolved
 
-ln -s ../dhcpcd\@.service \
-    /etc/systemd/system/multi-user.target.wants/dhcpcd\@$NET_DEV.service \
-    >/dev/null 2>&1;
+cat > /etc/systemd/network/lan.network << EOF
+[Match]
+Name=wlp*
+#Name=enp*
+
+[Network]
+DHCP=yes
+EOF
+
+rm /etc/resolv.conf >/dev/null 2>&1;
+ln -s /run/systemd/resolve/resolv.conf /etc/ >/dev/null 2>&1;
 
 # Wireless network specific settings
 if [ "$WL_DEV" == "$NET_DEV" ]; then
-    sed 's/\(After=.\+\)/\1 wpa_supplicant@%I.service' \
-        -i /etc/systemd/system/dhcpcd\@.service
-        >/dev/null 2>&1;
-
-    mkdir -p /etc/systemd/system/dhcpcd\@$NET_DEV.service.wants >/dev/null 2>&1;
-    ln -s /usr/lib/systemd/system/wpa_supplicant\@.service \
-        /etc/systemd/system/dhcpcd\@$NET_DEV.service.wants/wpa_supplicant\@$NET_DEV.service \
-        >/dev/null 2>&1;
+    systemctl enable wpa_supplicant@wlp2s0
 
     ln -s wifi.conf /etc/wpa_supplicant/wpa_supplicant-$NET_DEV.conf \
         >/dev/null 2>&1;
@@ -176,18 +176,6 @@ if [ "$WL_DEV" == "$NET_DEV" ]; then
             /etc/systemd/system/wpa_supplicant\@$NET_DEV.service.wants/rfkill-unblock\@wifi.service >/dev/null 2>&1;
     fi;
 fi;
-
-
-# Unmount pacman cache before shutdown/reboot
-mkdir -pv /etc/systemd/system/var-cache-pacman-pkg.mount.wants >/dev/null 2>&1;
-ln -s ../dhcpcd\@.service \
-    /etc/systemd/system/var-cache-pacman-pkg.mount.wants/dhcpcd\@$NET_DEV.service \
-    >/dev/null 2>&1;
-
-mkdir -pv /etc/systemd/system/var-lib-pacman-sync.mount.wants >/dev/null 2>&1;
-ln -s ../dhcpcd\@.service \
-    /etc/systemd/system/var-lib-pacman-sync.mount.wants/dhcpcd\@$NET_DEV.service \
-    >/dev/null 2>&1;
 
 # Make default systemd target multi-user to avoid missing login manager warning
 ln -s /usr/lib/systemd/system/multi-user.target \

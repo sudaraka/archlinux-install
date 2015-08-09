@@ -62,13 +62,7 @@ echo '';
 
 
 # Start replacing device name
-mv /etc/systemd/system/multi-user.target.wants/dhcpcd\@{$ND_OLD,$ND_NEW}.service;
-
-mv /etc/systemd/system/dhcpcd\@{$ND_OLD,$ND_NEW}.service.wants
-
-mv /etc/systemd/system/dhcpcd\@$ND_NEW.service.wants/wpa_supplicant\@{$ND_OLD,$ND_NEW}.service;
+sed "s/$ND_OLD/$ND_NEW/g" -i /etc/systemd/network/*
+mv /etc/systemd/system/multi-user.target.wants/wpa_supplicant\@{$ND_OLD,$ND_NEW}.service;
 
 mv /etc/wpa_supplicant/wpa_supplicant-{$ND_OLD,$ND_NEW}.conf;
-
-mv /etc/systemd/system/var-cache-pacman-pkg.mount.wants/dhcpcd\@{$ND_OLD,$ND_NEW}.service
-mv /etc/systemd/system/var-lib-pacman-sync.mount.wants/dhcpcd\@{$ND_OLD,$ND_NEW}.service
