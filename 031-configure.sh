@@ -107,10 +107,8 @@ ln -s /usr/share/zoneinfo/Asia/Colombo /etc/localtime;
 hwclock --hctosys --utc;
 
 # NTP setup
-ln -s /usr/lib/systemd/system/ntpd.service \
-    /etc/systemd/system/multi-user.target.wants/;
-sed 's/\(server\s\+.\+\)/#\1/' -i /etc/ntp.conf;
-echo "server $LAN_SERVER" >> /etc/ntp.conf;
+sed "s/#\(NTP=\).\*/\1$LAN_SERVER/" -i /etc/systemd/timesyncd.conf >/dev/null 2>&1;
+timedatectl set-ntp true >/dev/null 2>&1;
 
 # Generate locale
 echo 'Generating locale...';
