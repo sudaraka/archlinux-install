@@ -48,8 +48,8 @@ case "$1" in
     "i3")
         # install i3
         yaourt -S --noconfirm \
-            i3 dmenu thunar thunar-archive-plugin ristretto tumbler \
-            xfce4-screenshooter conky
+            i3 thunar thunar-archive-plugin ristretto tumbler conky \
+            xfce4-screenshooter
         ;;
 esac;
 
