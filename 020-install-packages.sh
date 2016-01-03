@@ -43,7 +43,7 @@ echo '';
 echo 'Creating pacman configuration...';
 
 # Make pacman ignore packages depended on Mono and Java
-sed 's/#\(IgnorePkg\s*=\)/\1 mono mono-tools jre7-openjdk-headless/' \
+sed 's/#\(IgnorePkg\s*=\)/\1 mono mono-tools *-openjdk-headless/' \
     /etc/pacman.conf > /mnt/etc/pacman.conf 2>/dev/null;
 
 # Add archlinux.fr repository for Yaourt
